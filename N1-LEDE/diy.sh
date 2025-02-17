@@ -22,6 +22,9 @@ git clone --depth=1 https://github.com/vernesong/OpenClash package/openclash
 git clone -b v5-lua --single-branch --depth 1 https://github.com/sbwml/luci-app-mosdns package/mosdns
 git clone -b lua --single-branch --depth 1 https://github.com/sbwml/luci-app-alist package/alist
 git clone --depth=1 https://github.com/gdy666/luci-app-lucky.git package/lucky
+# iStore
+git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
+git_sparse_clone main https://github.com/linkease/istore luci
 #添加自定义的软件包源
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages ddns-go
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-ddns-go

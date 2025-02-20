@@ -22,7 +22,7 @@ git clone --depth=1 https://github.com/sirpdboy/luci-app-ddns-go package/ddnsgo
 git clone --depth=1 https://github.com/vernesong/OpenClash package/openclash
 git clone -b v5-lua --single-branch --depth 1 https://github.com/sbwml/luci-app-mosdns package/mosdns
 git clone -b lua --single-branch --depth 1 https://github.com/sbwml/luci-app-alist package/alist
-git clone --depth=1 https://github.com/gdy666/luci-app-lucky.git package/lucky
+git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
 # iStore
 git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
 git_sparse_clone main https://github.com/linkease/istore luci

@@ -22,7 +22,7 @@ git clone --depth=1 https://github.com/sirpdboy/luci-app-lucky package/lucky
 #git clone --depth=1 https://github.com/sirpdboy/NetSpeedTest package/NetSpeedTest
 git clone --depth=1 https://github.com/vernesong/OpenClash package/openclash
 git clone -b v5-lua --single-branch --depth 1 https://github.com/sbwml/luci-app-mosdns package/mosdns
-git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/netwizard 
+
 #git clone --depth=1 https://github.com/gdy666/luci-app-lucky package/lucky
 
 # iStore

@@ -9,8 +9,7 @@ function git_sparse_clone() {
   cd .. && rm -rf $repodir
 }
 
-# Default IP
-sed -i 's/192.168.1.1/192.168.2.2/g' package/base-files/files/bin/config_generate
+
 
 
 # Add packages
@@ -22,6 +21,13 @@ git clone --depth 1 https://github.com/ophub/luci-app-amlogic package/amlogic
 git clone --depth 1 https://github.com/sbwml/luci-app-mosdns package/mosdns
 #git clone --depth 1 https://github.com/sbwml/luci-app-alist package/alist
 #git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall
+
+
+
+# iStore
+git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
+git_sparse_clone main https://github.com/linkease/istore luci
+
 
 
 #删除库中的插件，使用自定义源中的包。
@@ -45,3 +51,15 @@ rm -rf feeds/luci/applications/luci-app-argon-config
 #替换luci-app-socat为https://github.com/chenmozhijin/luci-app-socat
 #rm -rf feeds/luci/applications/luci-app-socat
 #git_sparse_clone main https://github.com/chenmozhijin/luci-app-socat luci-app-socat
+
+
+# Default IP
+sed -i 's/192.168.1.1/192.168.0.188/g' package/base-files/files/bin/config_generate
+
+
+# 增加istoreui源
+echo >> feeds.conf.default
+echo 'src-git istore https://github.com/linkease/istore;main' >> feeds.conf.default
+echo >> feeds.conf.default
+echo 'src-git nas https://github.com/linkease/nas-packages.git;master' >> feeds.conf.default
+echo 'src-git nas_luci https://github.com/linkease/nas-packages-luci.git;main' >> feeds.conf.default

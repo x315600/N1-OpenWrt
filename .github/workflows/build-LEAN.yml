@@ -1,9 +1,9 @@
 name: Build OpenWRT-LEAN for N1
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '0 14 * * 5'  # 每周五的 14:00（UTC），即上海时间每周五 22:00
+    - cron: '20 22 * * 5' # 每周五 22:20（上海时间）
+  workflow_dispatch:
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
@@ -173,7 +173,7 @@ jobs:
           基于lean openwrt构建
           首次使用建议全新刷写
           * 基本信息
-          IP: 192.168.2.254
+          IP: 192.168.2.2
           账户: root
           密码: password
           

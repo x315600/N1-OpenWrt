@@ -32,7 +32,7 @@ git clone -b v5-lua --single-branch --depth 1 https://github.com/sbwml/luci-app-
 git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
 git_sparse_clone main https://github.com/linkease/istore luci
 #添加自定义的软件包源
-git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-theme-edge
+#git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-theme-edge
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-lucky
 Remove packages
 #删除冲突插件
@@ -50,8 +50,8 @@ rm -rf feeds/luci/applications/luci-app-argon-config
 rm -rf feeds/packages/net/mosdns
 rm -rf feeds/packages/utils/v2dat
 rm -rf feeds/luci/applications/luci-app-mosdns
-#rm -rf feeds/luci/themes/luci-theme-design
-#rm -rf feeds/luci/applications/luci-app-design-config
+rm -rf feeds/luci/themes/luci-theme-design
+rm -rf feeds/luci/applications/luci-app-design-config
 
 # Default IP
 

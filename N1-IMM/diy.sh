@@ -18,11 +18,17 @@ sed -i 's/192.168.1.1/192.168.2.15/g' package/base-files/files/bin/config_genera
 git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
 git clone --depth 1 https://github.com/ophub/luci-app-amlogic package/amlogic
+git clone --depth=1  https://github.com/gdy666/luci-app-lucky.git package/lucky
+git clone --depth=1 https://github.com/vernesong/OpenClash package/openclash
 #git clone --depth 1 https://github.com/sirpdboy/luci-app-ddns-go package/ddnsgo
 git clone --depth 1 https://github.com/sbwml/luci-app-mosdns package/mosdns
 #git clone --depth 1 https://github.com/sbwml/luci-app-alist package/alist
 #git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall
+# iStore
 
+git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
+git_sparse_clone main https://github.com/linkease/istore luci
+git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-lucky
 
 #删除库中的插件，使用自定义源中的包。
 rm -rf feeds/luci/themes/luci-theme-argon

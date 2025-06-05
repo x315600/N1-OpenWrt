@@ -15,7 +15,7 @@ sed -i 's/192.168.1.1/192.168.2.254/g' package/base-files/files/bin/config_gener
 
 # Add packages
 #添加科学上网源
-
+git clone --depth=1 https://github.com/justice2001/luci-app-multi-frpc package/frpc
 git clone --depth 1 https://github.com/nikkinikki-org/OpenWrt-nikki package/nikki
 
 git clone --depth 1 https://github.com/sbwml/luci-app-mosdns package/mosdns
@@ -28,7 +28,8 @@ git clone --depth=1 https://github.com/vernesong/OpenClash package/openclash
 #git clone --depth 1 https://github.com/sirpdboy/luci-app-ddns-go package/ddnsgo
 
 #git clone --depth 1 https://github.com/sbwml/luci-app-alist package/alist
-#git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall-packages
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
 # iStore
 
 git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
@@ -38,11 +39,20 @@ git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-lucky
 #删除库中的插件，使用自定义源中的包。
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/luci/applications/luci-app-argon-config
-#rm -rf feeds/luci/applications/luci-app-ddns-go
-#rm -rf feeds/packages/net/ddns-go
-#rm -rf feeds/packages/net/alist
-#rm -rf feeds/luci/applications/luci-app-alist
-#rm -rf feeds/luci/applications/openwrt-passwall
+rm -rf feeds/luci/applications/luci-app-frpc
+
+rm -rf feeds/packages/net/v2ray-geodata
+
+
+rm -rf feeds/packages/utils/v2dat
+
+
+
+rm -rf feeds/luci/applications/luci-app-ddns-go
+rm -rf feeds/packages/net/ddns-go
+rm -rf feeds/packages/net/alist
+rm -rf feeds/luci/applications/luci-app-alist
+rm -rf feeds/luci/applications/openwrt-passwall
 
 # 替换luci-app-openvpn-server imm源的启动不了服务！
 #rm -rf feeds/luci/applications/luci-app-openvpn-server

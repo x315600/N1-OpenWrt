@@ -39,22 +39,24 @@ git_sparse_clone main https://github.com/linkease/istore luci
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-lucky
 
 #删除库中的插件，使用自定义源中的包。
+
+
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/luci/applications/luci-app-argon-config
 rm -rf feeds/luci/applications/luci-app-frpc
 
-rm -rf feeds/packages/net/v2ray-geodata
+#rm -rf feeds/packages/net/v2ray-geodata
 
 
-rm -rf feeds/packages/utils/v2dat
+#rm -rf feeds/packages/utils/v2dat
 
 
 
-rm -rf feeds/luci/applications/luci-app-ddns-go
-rm -rf feeds/packages/net/ddns-go
-rm -rf feeds/packages/net/alist
-rm -rf feeds/luci/applications/luci-app-alist
-rm -rf feeds/luci/applications/openwrt-passwall
+#rm -rf feeds/luci/applications/luci-app-ddns-go
+#rm -rf feeds/packages/net/ddns-go
+#rm -rf feeds/packages/net/alist
+#rm -rf feeds/luci/applications/luci-app-alist
+#rm -rf feeds/luci/applications/openwrt-passwall
 
 # 替换luci-app-openvpn-server imm源的启动不了服务！
 #rm -rf feeds/luci/applications/luci-app-openvpn-server

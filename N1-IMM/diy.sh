@@ -16,8 +16,8 @@ sed -i 's/192.168.1.1/192.168.2.254/g' package/base-files/files/bin/config_gener
 # Add packages
 #添加科学上网源
 #git clone --depth=1 https://github.com/justice2001/luci-app-multi-frpc package/frpc
-git clone --depth=1 https://github.com/superzjg/luci-app-frpc_frps/tree/main/luci-app-frpc package/frpc
-git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/netwizard
+git clone --depth=1 https://github.com/superzjg/luci-app-frpc_frps package/frpc
+
 git clone --depth 1 https://github.com/nikkinikki-org/OpenWrt-nikki package/nikki
 
 git clone --depth 1 https://github.com/sbwml/luci-app-mosdns package/mosdns
@@ -29,9 +29,9 @@ git clone --depth=1  https://github.com/gdy666/luci-app-lucky.git package/lucky
 git clone --depth=1 https://github.com/vernesong/OpenClash package/openclash
 #git clone --depth 1 https://github.com/sirpdboy/luci-app-ddns-go package/ddnsgo
 
-#git clone --depth 1 https://github.com/sbwml/luci-app-alist package/alist
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall-packages
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
+
+#git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall-packages
+#git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
 # iStore
 
 git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui

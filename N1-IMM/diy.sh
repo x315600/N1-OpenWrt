@@ -34,7 +34,7 @@ git clone --depth=1 https://github.com/vernesong/OpenClash package/openclash
 
 #git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall-packages
 #git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
-git clone --depth=1 https://github.com/kenzok8/small-package package/small
+
 
 # iStore
 
@@ -47,7 +47,7 @@ git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-lucky
 
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/luci/applications/luci-app-argon-config
-rm -rf feeds/luci/applications/luci-app-frpc
+
 
 #rm -rf feeds/packages/net/v2ray-geodata
 

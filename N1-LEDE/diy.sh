@@ -31,7 +31,7 @@ git_sparse_clone main https://github.com/linkease/istore luci
 #添加自定义的软件包源
 #git_sparse_clone main https://github.com/kiddin9/kwrt-packages ddns-go
 #git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-lucky
-
+git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-wechatpush
 #删除lean库中的插件，使用自定义源中的包。
 rm -rf feeds/packages/net/v2ray-geodata
 rm -rf feeds/luci/themes/luci-theme-argon

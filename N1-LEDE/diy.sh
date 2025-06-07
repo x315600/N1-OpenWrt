@@ -31,7 +31,7 @@ git_sparse_clone main https://github.com/linkease/istore luci
 #添加自定义的软件包源
 #git_sparse_clone main https://github.com/kiddin9/kwrt-packages ddns-go
 #git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-lucky
-git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-wechatpush
+#git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-wechatpush
 #删除lean库中的插件，使用自定义源中的包。
 rm -rf feeds/packages/net/v2ray-geodata
 rm -rf feeds/luci/themes/luci-theme-argon
@@ -43,10 +43,10 @@ rm -rf feeds/luci/applications/luci-app-mosdns
 #rm -rf feeds/luci/applications/luci-app-design-config
 
 # golang版本修复
-rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
+#rm -rf feeds/packages/lang/golang
+#git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 # Default IP
-sed -i 's/192.168.1.1/192.168.2.254/g' package/base-files/luci2/bin/config_generate
-#sed -i 's/192.168.1.1/192.168.2.254/g' package/base-files/files/bin/config_generate
+#sed -i 's/192.168.1.1/192.168.2.254/g' package/base-files/luci2/bin/config_generate
+sed -i 's/192.168.1.1/192.168.2.254/g' package/base-files/files/bin/config_generate
 #修改默认时间格式
 sed -i 's/os.date()/os.date("%Y-%m-%d %H:%M:%S %A")/g' $(find ./package/*/autocore/files/ -type f -name "index.htm")

@@ -18,7 +18,7 @@ sed -i 's/192.168.1.1/192.168.2.254/g' package/base-files/files/bin/config_gener
 #git clone --depth=1 https://github.com/justice2001/luci-app-multi-frpc package/frpc
 # git clone --depth=1 https://github.com/kuoruan/openwrt-frp package/openwrt-frp
 git clone --depth=1 https://github.com/superzjg/luci-app-frpc_frps package/frpc
-git clone --depth=1 https://github.com/afala2020/luci-app-serverchan package/serverchan
+
 git clone --depth=1 https://github.com/tty228/luci-app-wechatpush package/luci-app-wechatpush
 git clone --depth 1 https://github.com/nikkinikki-org/OpenWrt-nikki package/nikki
 

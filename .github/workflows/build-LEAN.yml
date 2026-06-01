@@ -155,7 +155,7 @@ jobs:
         KERNEL_VERSION_NAME: 5.15.176
         KERNEL_AUTO_LATEST: false
         PACKAGE_SOC: s905d
-        WHOAMI: fightroad
+        WHOAMI: x315600
         SW_FLOWOFFLOAD: 1
         SFE_FLOW: 0
        
@@ -163,12 +163,12 @@ jobs:
       uses: ncipollo/release-action@main
       if: ${{ env.PACKAGED_STATUS == 'success' }} && !cancelled()
       with:
-        tag: OpenWrt_N1_${{ env.PACKAGED_OUTPUTDATE }}
+        tag: N1_OpenWrt_${{ env.PACKAGED_OUTPUTDATE }}
         artifacts: /opt/openwrt_packit/output/*
         allowUpdates: true
         token: ${{ secrets.GITHUB_TOKEN }}
         body: |
-          基于lean openwrt构建
+          基于 lean openwrt 构建，插件集：PassWall / MosDNS / OpenClash / Nikki / Docker / Lucky / TurboACC / FileBrowser / FileManager / FRPC / Amlogic / Taskplan / WeChatPush / Diskman
           首次使用建议全新刷写
           * 基本信息
           IP: 192.168.2.2

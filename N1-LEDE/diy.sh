@@ -49,7 +49,9 @@ rm -rf feeds/luci/applications/luci-app-mosdns
 #rm -rf feeds/luci/applications/luci-app-design-config
 
 # Default IP
-sed -i 's/192.168.1.1/192.168.2.2/g' package/base-files/files/bin/config_generate
+if [ -f package/base-files/files/bin/config_generate ]; then
+  sed -i 's/192.168.1.1/192.168.2.2/g' package/base-files/files/bin/config_generate
+fi
 
-#修改默认时间格式
-sed -i 's/os.date()/os.date("%Y-%m-%d %H:%M:%S %A")/g' $(find ./package/*/autocore/files/ -type f -name "index.htm")
+# 修改默认时间格式
+find ./package -path '*/autocore/files/*/index.htm' -type f -exec sed -i 's/os.date()/os.date("%Y-%m-%d %H:%M:%S %A")/g' {} +

@@ -11,17 +11,17 @@ function git_sparse_clone() {
 
 # Add packages
 # 添加科学上网源
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall-packages
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
+git clone --depth=1 https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/openwrt-passwall-packages
+git clone --depth=1 https://github.com/Openwrt-Passwall/openwrt-passwall package/openwrt-passwall
 git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
 git clone -b 18.06 --single-branch --depth 1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone -b 18.06 --single-branch --depth 1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
 git clone --depth=1 https://github.com/ophub/luci-app-amlogic package/amlogic
 git clone --depth=1 https://github.com/gdy666/luci-app-lucky.git package/lucky
 git clone -b v5-lua --single-branch --depth 1 https://github.com/sbwml/luci-app-mosdns package/mosdns
-git clone --depth=1 https://github.com/sbwml/luci-app-diskman package/luci-app-diskman
+git_sparse_clone main https://github.com/sbwml/luci-app-diskman luci-app-diskman
 git clone --depth=1 https://github.com/tty228/luci-app-wechatpush package/luci-app-wechatpush
-git clone --depth=1 https://github.com/sirpdboy/luci-app-taskplan package/luci-app-taskplan
+git_sparse_clone main https://github.com/sirpdboy/luci-app-taskplan luci-app-taskplan
 git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-filebrowser
 git_sparse_clone main https://github.com/nikkinikki-org/OpenWrt-nikki luci-app-nikki nikki mihomo-meta mihomo-alpha
 

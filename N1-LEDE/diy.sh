@@ -54,4 +54,4 @@ if [ -f package/base-files/files/bin/config_generate ]; then
 fi
 
 # 修改默认时间格式
-find ./package -path '*/autocore/files/*/index.htm' -type f -exec sed -i 's/os.date()/os.date("%Y-%m-%d %H:%M:%S %A")/g' {} +
+find ./package -path '*/autocore/files/*/index.htm' -type f 2>/dev/null -exec sed -i 's/os.date()/os.date("%Y-%m-%d %H:%M:%S %A")/g' {} + || true

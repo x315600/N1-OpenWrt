@@ -29,13 +29,15 @@ git clone --depth=1 https://github.com/tty228/luci-app-wechatpush package/luci-a
 git_sparse_clone main https://github.com/sirpdboy/luci-app-taskplan luci-app-taskplan
 git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-filebrowser
 
-# luci-app-filemanager is part of upstream LuCI; pull only the app subtree.
-git clone --depth=1 --filter=blob:none --sparse https://github.com/openwrt/luci package/luci-app-filemanager-src
-cd package/luci-app-filemanager-src
+# luci-app-filemanager is part of upstream LuCI now; pull only the app subtree.
+(
+  git clone --depth=1 --filter=blob:none --sparse https://github.com/openwrt/luci package/luci-app-filemanager-src
+  cd package/luci-app-filemanager-src || exit 1
   git sparse-checkout set applications/luci-app-filemanager
   mkdir -p ../luci-app-filemanager
   cp -a applications/luci-app-filemanager/. ../luci-app-filemanager/
-cd .. && rm -rf luci-app-filemanager-src
+)
+rm -rf package/luci-app-filemanager-src
 
 # 删除库中的插件，使用自定义源中的包。
 rm -rf feeds/luci/themes/luci-theme-argon

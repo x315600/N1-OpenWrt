@@ -26,12 +26,14 @@ git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-filebro
 git_sparse_clone main https://github.com/nikkinikki-org/OpenWrt-nikki luci-app-nikki nikki mihomo-meta mihomo-alpha
 
 # luci-app-filemanager is part of upstream LuCI now; pull only the app subtree.
-git clone --depth=1 --filter=blob:none --sparse https://github.com/openwrt/luci package/luci-app-filemanager-src
-cd package/luci-app-filemanager-src
+(
+  git clone --depth=1 --filter=blob:none --sparse https://github.com/openwrt/luci package/luci-app-filemanager-src
+  cd package/luci-app-filemanager-src || exit 1
   git sparse-checkout set applications/luci-app-filemanager
   mkdir -p ../luci-app-filemanager
   cp -a applications/luci-app-filemanager/. ../luci-app-filemanager/
-cd .. && rm -rf luci-app-filemanager-src
+)
+rm -rf package/luci-app-filemanager-src
 
 # 添加自定义的软件包源
 #git_sparse_clone main https://github.com/kiddin9/kwrt-packages ddns-go

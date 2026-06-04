@@ -148,7 +148,7 @@ jobs:
         echo "compile_status=success" >> $GITHUB_ENV
 
     - name: Package OpenWrt Firmware
-      if: ${{ env.compile_status }} == 'success' && !cancelled()
+      if: ${{ env.compile_status == 'success' && !cancelled() }}
       uses: unifreq/openwrt_packit@master
       env:
         OPENWRT_ARMVIRT: openwrt/bin/targets/*/*/openwrt-amlogic-mesongx-phicomm_n1-rootfs.tar.gz
@@ -158,27 +158,24 @@ jobs:
         WHOAMI: x315600
         SW_FLOWOFFLOAD: 1
         SFE_FLOW: 0
-       
+
     - name: Upload OpenWrt Firmware to Release
-      uses: ncipollo/release-action@main
-      if: ${{ env.PACKAGED_STATUS == 'success' }} && !cancelled()
-      with:
-        tag: N1_OpenWrt_${{ env.PACKAGED_OUTPUTDATE }}
-        artifacts: /opt/openwrt_packit/output/*
-        allowUpdates: true
-        token: ${{ secrets.GITHUB_TOKEN }}
-        body: |
-          基于 lean openwrt 构建，插件集：PassWall / MosDNS / OpenClash / Nikki / Docker / Lucky / TurboACC / FileBrowser / FileManager / FRPC / Amlogic / Taskplan / WeChatPush / Diskman
-          首次使用建议全新刷写
-          * 基本信息
-          IP: 192.168.2.2
-          账户: root
-          密码: password
-          
-    - name: Delete old releases
-      uses: dev-drprasad/delete-older-releases@master
+      if: ${{ env.PACKAGED_STATUS == 'success' && !cancelled() }}
+      run: |
+        gh release create N1_OpenWrt_${{ env.PACKAGED_OUTPUTDATE }} \
+          /opt/openwrt_packit/output/* \
+          --repo ${{ github.repository }} \
+          --notes "基于 lean openwrt 构建，插件集：PassWall / MosDNS / OpenClash / Nikki / Docker / Lucky / TurboACC / FileBrowser / FileManager / FRPC / Amlogic / Taskplan / WeChatPush / Diskman\n首次使用建议全新刷写\n* 基本信息\nIP: 192.168.2.2\n账户: root\n密码: password" \
+          --clobber \
+          --latest
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        keep_latest: 10
-        delete_tags : true
+
+    - name: Delete old releases
+      if: ${{ env.PACKAGED_STATUS == 'success' && !cancelled() }}
+      run: |
+        gh release list --repo ${{ github.repository }} --limit 100 | tail -n +11 | awk '{print $1}' | while read id; do
+          gh release delete "$id" --repo ${{ github.repository }} --yes 2>/dev/null || true
+        done
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

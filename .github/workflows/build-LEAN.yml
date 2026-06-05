@@ -152,6 +152,15 @@ jobs:
         sudo rm -rf openwrt/build_dir openwrt/staging_dir openwrt/dl openwrt/tmp ~/.ccache /opt/hostedtoolcache || true
         df -hT
 
+    - name: Prepare packit workspace
+      if: ${{ env.compile_status == 'success' && !cancelled() }}
+      run: |
+        set -euxo pipefail
+        sudo rm -rf /opt/openwrt_packit
+        mkdir -p "$GITHUB_WORKSPACE/openwrt_packit"
+        sudo ln -s "$GITHUB_WORKSPACE/openwrt_packit" /opt/openwrt_packit
+        df -hT / /opt/openwrt_packit "$GITHUB_WORKSPACE"
+
     - name: Package OpenWrt Firmware
       if: ${{ env.compile_status == 'success' && !cancelled() }}
       uses: unifreq/openwrt_packit@master
@@ -164,12 +173,20 @@ jobs:
         SW_FLOWOFFLOAD: 1
         SFE_FLOW: 0
 
+    - name: Verify packaged firmware
+      if: ${{ env.compile_status == 'success' && !cancelled() }}
+      run: |
+        set -euxo pipefail
+        test -d /opt/openwrt_packit/output
+        find /opt/openwrt_packit/output -type f -maxdepth 1 -print
+        test "$(find /opt/openwrt_packit/output -type f -maxdepth 1 | wc -l)" -gt 0
+        echo "PACKAGED_STATUS=success" >> "$GITHUB_ENV"
+        echo "PACKAGED_OUTPUTDATE=$(date '+%Y%m%d%H%M%S')" >> "$GITHUB_ENV"
+
     - name: Upload OpenWrt Firmware to Release
       if: ${{ env.PACKAGED_STATUS == 'success' && !cancelled() }}
       run: |
         tag="N1_OpenWrt_${{ env.PACKAGED_OUTPUTDATE }}"
-        test -d /opt/openwrt_packit/output
-        test "$(find /opt/openwrt_packit/output -type f | wc -l)" -gt 0
         gh release delete "$tag" --repo ${{ github.repository }} --cleanup-tag --yes 2>/dev/null || true
         gh release create "$tag" \
           /opt/openwrt_packit/output/* \

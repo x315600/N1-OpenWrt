@@ -156,10 +156,10 @@ jobs:
       if: ${{ env.compile_status == 'success' && !cancelled() }}
       run: |
         set -euxo pipefail
-        sudo rm -rf /opt/openwrt_packit
-        mkdir -p "$GITHUB_WORKSPACE/openwrt_packit"
-        sudo ln -s "$GITHUB_WORKSPACE/openwrt_packit" /opt/openwrt_packit
-        df -hT / /opt/openwrt_packit "$GITHUB_WORKSPACE"
+        sudo rm -rf /opt/openwrt_packit "$GITHUB_WORKSPACE/openwrt_packit"
+        echo "SELECT_PACKITPATH=../home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/openwrt_packit" >> "$GITHUB_ENV"
+        echo "PACKAGED_OUTPUTPATH=$GITHUB_WORKSPACE/openwrt_packit/output" >> "$GITHUB_ENV"
+        df -hT / "$GITHUB_WORKSPACE"
 
     - name: Package OpenWrt Firmware
       if: ${{ env.compile_status == 'success' && !cancelled() }}
@@ -177,9 +177,9 @@ jobs:
       if: ${{ env.compile_status == 'success' && !cancelled() }}
       run: |
         set -euxo pipefail
-        test -d /opt/openwrt_packit/output
-        find /opt/openwrt_packit/output -type f -maxdepth 1 -print
-        test "$(find /opt/openwrt_packit/output -type f -maxdepth 1 | wc -l)" -gt 0
+        test -d "$PACKAGED_OUTPUTPATH"
+        find "$PACKAGED_OUTPUTPATH" -maxdepth 1 -type f -print
+        test "$(find "$PACKAGED_OUTPUTPATH" -maxdepth 1 -type f | wc -l)" -gt 0
         echo "PACKAGED_STATUS=success" >> "$GITHUB_ENV"
         echo "PACKAGED_OUTPUTDATE=$(date '+%Y%m%d%H%M%S')" >> "$GITHUB_ENV"
 
@@ -189,7 +189,7 @@ jobs:
         tag="N1_OpenWrt_${{ env.PACKAGED_OUTPUTDATE }}"
         gh release delete "$tag" --repo ${{ github.repository }} --cleanup-tag --yes 2>/dev/null || true
         gh release create "$tag" \
-          /opt/openwrt_packit/output/* \
+          "$PACKAGED_OUTPUTPATH"/* \
           --repo ${{ github.repository }} \
           --notes "基于 lean openwrt 构建，插件集：PassWall / MosDNS / OpenClash / Nikki / Docker / Lucky / TurboACC / FileBrowser / FileManager / FRPC / Amlogic / Taskplan / WeChatPush / Diskman\n首次使用建议全新刷写\n* 基本信息\nIP: 192.168.2.2\n账户: root\n密码: password" \
           --latest
